@@ -1,0 +1,57 @@
+﻿@page "/todo"
+<PageTitle>Todo</PageTitle>
+
+<h1>Todo</h1>
+@*(@todos.Count(Todo => !Todo.IsDone))*@
+
+<ul>
+    @*@for (int i = 0; i < todos.Count; i++)*@
+    @foreach (var todo in todos)
+    {
+@*      var index = i;
+        var todo = todos[index];*@
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+            <button @onclick="@(() => DeleteTodo(todo))">Delete</button>
+            @*<button @onclick="@(() => DeleteTodo(index))">Delete</button>*@
+        </li>
+    }
+</ul> 
+
+<input placeholder="Add a todo" @bind="newToDo"/>
+<button @onclick="AddToDo">Add todo</button>
+
+@code {
+    private IEnumerable<TodoItem> todos;
+    private string? newToDo;
+    private CosmosRepository repo = new CosmosRepository();
+
+    public async Task AddToDo()
+    {
+        if(!string.IsNullOrWhiteSpace(newToDo))
+        {
+            await repo.Add(new TodoItem {
+                    Title = newToDo,
+                    Id = Guid.NewGuid()
+        });
+            newToDo = string.Empty;
+            todos = await repo.GetAll();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        todos = await repo.GetAll();
+    }
+
+
+    public void DeleteTodo(TodoItem item)   
+    {
+        //todos.Remove(item);
+    }
+    //public void DeleteTodo(int index)    //using index to delete todoitem
+    //{
+    //    todos.RemoveAt(index);
+    //}
+}
