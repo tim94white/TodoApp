@@ -4,20 +4,20 @@ using System;
 using System.Collections.Generic;
 using TodoList.Pages;
 
-public class TodoContext : DbContext
-{
-    public DbSet<TodoItem> Todos { get; set; }
-    public string? Dbpath { get; }
-    public TodoContext()
-    {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        Dbpath = System.IO.Path.Join(path, "todo.db");
-    }
+//public class TodoContext : DbContext
+//{
+//    public DbSet<TodoItem> Todos { get; set; }
+//    public string? Dbpath { get; }
+//    public TodoContext()
+//    {
+//        var folder = Environment.SpecialFolder.LocalApplicationData;
+//        var path = Environment.GetFolderPath(folder);
+//        Dbpath = System.IO.Path.Join(path, "todo.db");
+//    }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={Dbpath}");
-}
+//    protected override void OnConfiguring(DbContextOptionsBuilder options)
+//        => options.UseSqlite($"Data Source={Dbpath}");
+//}
 public class TodoItem
 {
     [JsonProperty("id")]

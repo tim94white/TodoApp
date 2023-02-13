@@ -11,8 +11,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<CosmosRepository>();
-builder.Services.AddDbContextFactory<TodoContext>(opt =>
-opt.UseSqlite($"Data Source ={nameof(TodoContext.Todos)}.db"));
+//builder.Services.AddDbContextFactory<TodoContext>(opt =>
+//opt.UseSqlite($"Data Source ={nameof(TodoContext.Todos)}.db"));
 
 var app = builder.Build();
 

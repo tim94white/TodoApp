@@ -9,6 +9,7 @@
       "TodoList/1.0.0": {
         "dependencies": {
           "Microsoft.Azure.Cosmos": "3.31.2",
+          "Microsoft.EntityFrameworkCore": "7.0.2",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.2"
         },

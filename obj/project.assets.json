@@ -7414,6 +7414,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.Azure.Cosmos >= 3.31.2",
+      "Microsoft.EntityFrameworkCore >= 7.0.2",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.2"
     ]
@@ -7460,6 +7461,10 @@
           "Microsoft.Azure.Cosmos": {
             "target": "Package",
             "version": "[3.31.2, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.2, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",

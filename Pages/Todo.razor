@@ -14,6 +14,8 @@
             <input type="checkbox" @bind="todo.IsDone" />
             <input @bind="todo.Title" />
             <button @onclick="@(() => DeleteTodo(todo))">Delete</button>
+            <button @onclick="@(() => RetrieveId(todo))">Retrieve ID</button>
+            <button @onclick="@(() => UpdateItem(todo))">Update</button>
             @*<button @onclick="@(() => DeleteTodo(index))">Delete</button>*@
         </li>
     }
@@ -37,6 +39,7 @@
         });
             newToDo = string.Empty;
             todos = await repo.GetAll();
+            System.Diagnostics.Debug.WriteLine("item added");
         }
     }
 
@@ -45,13 +48,26 @@
         todos = await repo.GetAll();
     }
 
-
-    public void DeleteTodo(TodoItem item)   
+    public async Task RetrieveId(TodoItem item)
     {
-        //todos.Remove(item);
+        System.Diagnostics.Debug.WriteLine("button connected");
+        await repo.Retrieve(item);
     }
-    //public void DeleteTodo(int index)    //using index to delete todoitem
-    //{
-    //    todos.RemoveAt(index);
-    //}
+
+    public async Task UpdateItem(TodoItem item)
+    {
+        //System.Diagnostics.Debug.WriteLine(item.Id);
+        await repo.Update(item.Id.ToString(), item);
+
+    }
+
+
+    public async Task DeleteTodo(TodoItem item)  
+    {
+        System.Diagnostics.Debug.WriteLine("delete button linked");
+        await repo.Delete(item);
+        //System.Diagnostics.Debug.WriteLine("razor Todo item with id " + item.Id + " deleted");
+        todos = await repo.GetAll();
+    }
+
 }
